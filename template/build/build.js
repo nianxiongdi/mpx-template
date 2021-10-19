@@ -9,6 +9,7 @@ const { resolveDist, getRootPath } = require('./utils')
 program
   .option('-w, --watch', 'watch mode')
   .option('-p, --production', 'production release')
+  .option('-e2e', 'e2e_test')
   .parse(process.argv)
 
 const env = process.env

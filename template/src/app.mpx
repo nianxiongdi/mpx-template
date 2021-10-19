@@ -8,6 +8,9 @@
   mpx.use(apiProxy, { usePromise: true })
 
   createApp({
+    {% if needE2eTest %}
+    // 挂载mixin&xfetch
+    {% endif %}
     onLaunch () {
     }
   })

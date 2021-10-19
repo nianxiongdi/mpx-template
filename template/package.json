@@ -20,13 +20,14 @@
     {% if needEslint %}
     "lint": "eslint --ext .js,.ts,.mpx src/",
     {% endif %}
-    {% if needUnitTest or needE2eTest %}
+    {% if needUnitTest %}
     "test": "jest",
     "build:test": "npm run build && jest",
-    {% endif %}
-    {% if needUnitTest and needE2eTest %}
-    "test:e2e": "jest ./test/e2e/index.spec.js",
     "test:unit": "jest ./test/unit/**/*.spec.js",
+    {% endif %}
+    {% if needE2eTest %}
+    "build:e2e": "node ./build/build.js -e2e",
+    "test:e2e": "jest ./test/e2e/index.spec.js",
     {% endif %}
     {% if needDll %}
     "build:dll": "node ./build/buildDll.js",
@@ -66,6 +67,7 @@
     {% endif %}
     {% if needE2eTest %}
     "@didi/e2e-extension": "^0.0.5",
+    "webpack-replace-loader": "^1.3.0",
     {% endif %}
     "eslint-loader": "^2.1.1",
     "babel-eslint": "^10.0.1",

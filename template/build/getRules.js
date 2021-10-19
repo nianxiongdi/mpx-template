@@ -1,7 +1,8 @@
 let { mpxLoaderConf } = require('../config/index')
 const MpxWebpackPlugin = require('@mpxjs/webpack-plugin')
 const { resolve, resolveSrc } = require('./utils')
-
+const { argv } = process
+const IS_E2E = argv.includes('-e2e')
 const baseRules = [
   {
     test: /\.js$/,
@@ -109,10 +110,22 @@ module.exports = function getRules (options) {
       }
     ])
   } else {
+    let useLoaders = [MpxWebpackPlugin.loader(currentMpxLoaderConf)]
+    if (IS_E2E) {
+      useLoaders.push(
+        {
+          loader: 'webpack-replace-loader',
+          options: {
+            search: '// 挂载mixin&xfetch',
+            replace: 'mixin: mpx.mixin,xfetch: mpx.xfetch,'
+          }  
+        }
+      )
+    }
     rules = rules.concat([
       {
         test: /\.mpx$/,
-        use: MpxWebpackPlugin.loader(currentMpxLoaderConf)
+        use: useLoaders
       }
     ])
   }
