@@ -26,7 +26,7 @@
     "test:unit": "jest ./test/unit/**/*.spec.js",
     {% endif %}
     {% if needE2eTest %}
-    "build:e2e": "node ./build/build.js -e2e",
+    "build:e2e": "node ./build/build.js -e",
     "test:e2e": "jest ./test/e2e/index.spec.js",
     {% endif %}
     {% if needDll %}

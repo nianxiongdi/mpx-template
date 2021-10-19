@@ -2,7 +2,7 @@ let { mpxLoaderConf } = require('../config/index')
 const MpxWebpackPlugin = require('@mpxjs/webpack-plugin')
 const { resolve, resolveSrc } = require('./utils')
 const { argv } = process
-const IS_E2E = argv.includes('-e2e')
+const IS_E2E = argv.includes('-e')
 const baseRules = [
   {
     test: /\.js$/,
